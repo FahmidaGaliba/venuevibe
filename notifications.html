@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - VenueVibe</title>
+  <meta name="description" content="View venue requisitions, booking approvals, campus announcements, and maintenance alerts on VenueVibe.">
+  
+  <!-- Google Font: Geist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="user.css">
+  <link rel="stylesheet" href="notifications.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Backdrop for mobile drawer -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ================= APP CONTAINER ================= -->
+  <div class="app-container">
+
+    <!-- ================= 1. SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <!-- Brand Wordmark -->
+        <div class="brand">
+          <span class="brand-text">VenueVibe</span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+          <a href="user.php" class="nav-link" id="navDashboard">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="venue-list.php" class="nav-link" id="navVenues">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+              <line x1="9" y1="6" x2="9.01" y2="6"></line>
+              <line x1="15" y1="6" x2="15.01" y2="6"></line>
+              <line x1="9" y1="10" x2="9.01" y2="10"></line>
+              <line x1="15" y1="10" x2="15.01" y2="10"></line>
+              <line x1="9" y1="14" x2="9.01" y2="14"></line>
+            </svg>
+            <span>Venues</span>
+          </a>
+
+          <a href="requests.php" class="nav-link" id="navBookings">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>My Bookings</span>
+          </a>
+
+          <a href="messages.php" class="nav-link" id="navMessages">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Messages</span>
+          </a>
+
+          <a href="notifications.php" class="nav-link active" id="sidebarNotificationsLink">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span>Notifications</span>
+            <span class="sidebar-badge" id="sidebarUnreadBadge" style="margin-left: auto; background-color: rgba(255, 255, 255, 0.28); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 9999px;">0</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT WRAPPER ================= -->
+    <main class="main-wrapper">
+
+      <!-- ================= 2. ELEVATED MODERN NAVBAR ================= -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="nav-page-title">Notifications</h1>
+        </div>
+
+        <div class="header-right">
+
+
+          <!-- User Profile Capsule Button -->
+          <button class="user-capsule-btn" id="userBtn" title="Account settings & profile" type="button">
+            <div class="avatar-wrapper">
+              <div class="avatar-letter" id="capsuleAvatarLetter">U</div>
+              <span class="online-indicator"></span>
+            </div>
+            <div class="user-capsule-text">
+              <span class="capsule-name" id="capsuleUserName">Fahim</span>
+              <span class="capsule-role" id="capsuleUserRole">Student</span>
+            </div>
+            <svg class="capsule-chevron" viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ================= PAGE CONTENT AREA ================= -->
+      <div class="dashboard-content notif-dashboard-content">
+        <!-- Main Notification Card -->
+        <div class="notif-card">
+
+          <!-- Card Header & Filter Pills -->
+          <div class="notif-card-header">
+            <div>
+              <div class="notif-header-title-row">
+                <h1 class="notif-main-title">Notifications</h1>
+                <span class="main-unread-badge" id="unreadMainBadge">0 Unread</span>
+              </div>
+              <p class="notif-main-subtitle">Track your venue reservations, approvals, safety notices, and maintenance alerts.</p>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-pills-row" id="filterPillsRow">
+              <button class="tab-pill active" data-filter="all" id="pillAll">All (<span id="countAll">0</span>)</button>
+              <button class="tab-pill" data-filter="unread" id="pillUnread">Unread (<span id="countUnread">0</span>)</button>
+              <button class="tab-pill" data-filter="booking" id="pillBooking">Bookings (<span id="countBooking">0</span>)</button>
+              <button class="tab-pill" data-filter="announcement" id="pillAnnouncement">Announcements (<span id="countAnnouncement">0</span>)</button>
+              <button class="tab-pill" data-filter="system" id="pillSystem">System (<span id="countSystem">0</span>)</button>
+            </div>
+          </div>
+
+          <!-- Toolbar -->
+          <div class="notif-toolbar">
+            <div class="toolbar-search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" class="toolbar-search-input" id="mainSearchInput" placeholder="Filter by venue, title, or reference..." autocomplete="off">
+            </div>
+
+            <div class="toolbar-actions">
+              <button class="btn-toolbar" id="btnMarkAllRead">
+                <i data-lucide="check-check"></i>
+                <span>Mark All as Read</span>
+              </button>
+              <button class="btn-toolbar btn-danger" id="btnClearRead">
+                <i data-lucide="trash-2"></i>
+                <span>Clear Read</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Notification Items Container -->
+          <div class="notification-items-stack" id="userNotificationList"></div>
+
+          <!-- Empty State -->
+          <div class="empty-state-view" id="mainEmptyState">
+            <div class="empty-icon-circle">
+              <i data-lucide="bell-off"></i>
+            </div>
+            <h3 class="empty-title">No notifications found</h3>
+            <p class="empty-subtitle">There are no notices matching your active filter or search keyword.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================= 3. SIMPLIFIED MODERN FOOTER ================= -->
+      <footer class="app-footer">
+        <div class="footer-simple-content">
+          <div class="footer-left">
+            <div class="footer-brand-title">
+              <span class="brand-text">VenueVibe</span>
+              <span class="footer-pill-tag">Campus Solutions</span>
+            </div>
+            <p class="footer-simple-desc">Smart venue reservation and campus facility management portal.</p>
+          </div>
+
+          <div class="footer-right">
+            <nav class="footer-simple-links">
+              <a href="mailto:venue@uiu.ac.bd" class="footer-email-link" title="Contact Email" style="display: inline-flex; align-items: center; gap: 5px; color: var(--primary, #6366f1); font-weight: 500;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>venue@uiu.ac.bd</span>
+              </a>
+              <a href="#">Guidelines</a>
+              <a href="#">Campus Directory</a>
+              <a href="#">Helpdesk</a>
+              <a href="#">Terms & Privacy</a>
+            </nav>
+            <div class="status-indicator-pill">
+              <span class="live-dot"></span>
+              <span>All Systems Operational</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p>© <span id="year">2026</span> VenueVibe Campus Solutions. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </main>
+
+  </div><!-- /app-container -->
+
+  <!-- ================= USER PROFILE MODAL ================= -->
+  <div class="profile-modal-overlay" id="profileModalOverlay">
+    <div class="profile-card" id="profileCard">
+      <button class="modal-close-btn" id="closeProfileModal" title="Close Profile">
+        <svg class="icon-close" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="profile-header">
+        <div class="profile-avatar-large">
+          <div class="avatar-letter-large" id="profileModalAvatarLetter">U</div>
+          <span class="online-dot-large"></span>
+        </div>
+        <h3 class="profile-name" id="profileModalUserName">Fahim Ahmed</h3>
+        <span class="profile-role" id="profileModalUserRole">Student Executive / CSE</span>
+      </div>
+
+      <div class="profile-details-list">
+        <div class="detail-row">
+          <span class="detail-label">Student ID</span>
+          <span class="detail-value" id="profileModalStudentId">011 221 045</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <span class="detail-value" id="profileModalEmail">fahim@uiu.ac.bd</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Department</span>
+          <span class="detail-value" id="profileModalDepartment">Computer Science & Engineering</span>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn-profile-logout" id="profileLogoutBtn" onclick="window.location.href='logout.php'" type="button">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Details Modal -->
+  <div class="modal-overlay" id="detailsModal">
+    <div class="modal-card-box">
+      <div class="modal-header-row">
+        <div class="modal-header-group">
+          <div class="notif-icon-box" id="detailIconBg">
+            <i id="detailIcon" data-lucide="bell"></i>
+          </div>
+          <div>
+            <h3 class="modal-title-bold" id="detailTitle">Notification Details</h3>
+            <p class="modal-subtitle-text" id="detailSubtitle">Reference Code: VV-REQ-0000</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" id="btnCloseDetailsModal" title="Close details">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="modal-details-grid">
+          <div>
+            <span class="grid-cell-label">Venue / Room</span>
+            <span class="grid-cell-value" id="detailVenue">-</span>
+          </div>
+          <div>
+            <span class="grid-cell-label">Event Slot</span>
+            <span class="grid-cell-value" id="detailDate">-</span>
+          </div>
+          <div>
+            <span class="grid-cell-label">Received</span>
+            <span class="grid-cell-value" id="detailTime">-</span>
+          </div>
+          <div>
+            <span class="grid-cell-label">Status</span>
+            <div id="detailStatusBadge"></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="grid-cell-label">Official Notice Message</span>
+          <div class="modal-message-box" id="detailMessage"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer-row">
+        <button class="btn-modal-action secondary" id="btnCloseDetailsBottom">Close Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-card-box">
+      <div class="modal-header-row">
+        <div class="modal-header-group">
+          <i data-lucide="sliders"></i>
+          <h3 class="modal-title-bold">Notification Preferences</h3>
+        </div>
+        <button class="btn-modal-close" id="btnCloseSettingsModal" title="Close preferences">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="settings-option-row">
+          <div>
+            <p class="settings-option-title">Audio Chime Notifications</p>
+            <p class="settings-option-desc">Play Web Audio synthesized chime when receiving booking updates</p>
+          </div>
+          <input type="checkbox" id="settingSound" class="settings-checkbox" checked>
+        </div>
+
+        <div class="settings-option-row">
+          <div>
+            <p class="settings-option-title">In-App Toast Alerts</p>
+            <p class="settings-option-desc">Display transient banner popups for status and booking approvals</p>
+          </div>
+          <input type="checkbox" id="settingToast" class="settings-checkbox" checked>
+        </div>
+
+        <div class="settings-option-row">
+          <div>
+            <p class="settings-option-title">Email Confirmation Sync</p>
+            <p class="settings-option-desc">Send automated PDF requisition copy to campus student email</p>
+          </div>
+          <input type="checkbox" id="settingEmail" class="settings-checkbox" checked>
+        </div>
+      </div>
+
+      <div class="modal-footer-row">
+        <button class="btn-modal-action secondary" id="btnCancelSettings">Cancel</button>
+        <button class="btn-modal-action primary" id="btnSaveSettings">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alerts Container -->
+  <div class="toast-alerts-container" id="toastContainer"></div>
+
+  <script src="common.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>

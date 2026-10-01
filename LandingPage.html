@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VenueVibe</title>
+
+    <!-- Google Font: Geist -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="LandingPage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- ================= ELEVATED MODERN NAVBAR ================= -->
+    <header class="top-header">
+      <div class="header-left">
+        <a href="LandingPage.php" class="brand">
+          <span class="brand-text">VenueVibe</span>
+        </a>
+      </div>
+
+      <div class="header-right">
+        <nav class="nav-menu">
+          <a href="venue-list.php" class="nav-link-item">Browse</a>
+          <a href="#feature" class="nav-link-item">Support</a>
+          <button class="btn-login-cta" id="loginbtn">Login</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="main-portion">
+      <div class="overlay">
+        <h1>Campus Space Booking, <span>Simplified</span></h1>
+        <p>
+          The intelligent way to discover and reserve lecture halls, labs and
+          seminar rooms across you entire university campus in seconds.
+        </p>
+
+        <div class="btns">
+          <button class="first" id="signupbtn">Signup</button>
+          <button class="second" id="learnMorebtn">Learn more</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="campus-image">
+      <img src="Aesthetic_views.jpg" alt="Aesthetic Campus View" />
+      <div class="container">
+        <h1 id="campus-typing-text"></h1>
+      </div>
+    </section>
+
+    <section class="features" id="feature">
+      <div class="tag">FEATURES</div>
+      <h2>Designed For Campus Life</h2>
+
+      <p class="subtitle">
+        Streamline your academic experience with tools build specifically for
+        students and faculties.
+      </p>
+
+      <div class="feature-grid">
+        <div class="card">
+          <div class="icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3>Browse Availability</h3>
+          <p>
+            Real-time visibility into every space on campus. Filter by capacity,
+            equipment, or building location with a single tap.
+            <br />
+            View available time slots instantly and choose the perfect space for
+            your needs
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <i class="fa-solid fa-calendar"></i>
+          </div>
+          <h3>Manage Schedule</h3>
+          <p>
+            View your entire personal or departmental booking history in a
+            centralized, beautiful calendar view.
+            <br />
+            Stay updated with booking details, dates, and venue information in a
+            centralized dashboard.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h3>Request Bookings</h3>
+          <p>
+            Submit requests and get instant approval for smaller spaces, or
+            automated workflows for large lecture halls.
+            <br />
+            Receive status updates and notifications whenever your booking is
+            approved or modified.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to Revolutionize your Campus Navigation?</h2>
+      <button id="bookbtn">Book Now</button>
+    </section>
+
+    <!-- ================= SIMPLIFIED MODERN FOOTER ================= -->
+    <footer class="app-footer">
+      <div class="footer-simple-content">
+        <div class="footer-left">
+          <div class="footer-brand-title">
+            <span class="brand-text">VenueVibe</span>
+            <span class="footer-pill-tag">Campus Solutions</span>
+          </div>
+          <p class="footer-simple-desc">
+            Smart venue reservation and campus facility management portal.
+          </p>
+        </div>
+
+        <div class="footer-right">
+          <nav class="footer-simple-links">
+            <a href="mailto:venue@uiu.ac.bd" class="footer-email-link" title="Contact Email" style="display: inline-flex; align-items: center; gap: 5px; color: var(--primary, #6366f1); font-weight: 500;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>venue@uiu.ac.bd</span>
+            </a>
+            <a href="#">Guidelines</a>
+            <a href="#">Campus Directory</a>
+            <a href="#">Helpdesk</a>
+            <a href="#">Terms & Privacy</a>
+          </nav>
+          <div class="status-indicator-pill">
+            <span class="live-dot"></span>
+            <span>All Systems Operational</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>© <span id="year">2026</span> VenueVibe Campus Solutions. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+    <script>
+      new Typed("#campus-typing-text", {
+        strings: [
+          "Make campus space work for you.",
+          "Discover your next study space.",
+          "Book lecture halls in seconds.",
+          "Bring your campus plans to life.",
+          "Efficiently and Fastly",
+        ],
+        typeSpeed: 55,
+        backSpeed: 30,
+        backDelay: 1800,
+        loop: true,
+      });
+    </script>
+    <script src="LandingPage.js"></script>
+  </body>
+</html>
